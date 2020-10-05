@@ -1,0 +1,8 @@
+.idea/
+xcuserdata/
+Carthage/
+Pods/
+*.xcworkspace
+.build/
+*/.DS_Store
+.DS_Store
