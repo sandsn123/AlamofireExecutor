@@ -3,6 +3,12 @@ import Foundation
 import Alamofire
 import LSAPI
 
+public class CustomRequestInterceptor: RequestInterceptor {}
+
+private extension CustomRequestInterceptor {
+    static let shared = CustomRequestInterceptor()
+}
+
 public class AlamofireExecutor: ExecutorType {
     public static let instance = AlamofireExecutor()
 
@@ -35,8 +41,7 @@ extension DataRequest {
 
 extension AlamofireExecutor {
     fileprivate func doExecute(urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-        let dataRequest = AF
-            .request(urlRequest)
+        let dataRequest = AF.request(urlRequest, interceptor: CustomRequestInterceptor.shared)
             .addValidations(self.validations)
             .response { completionHandler($0.data, $0.response, $0.error) }
 
@@ -50,11 +55,10 @@ extension AlamofireExecutor {
         let validations = self.validations
 
         AF.upload(multipartFormData: { (formData) in
-
             for bodyPart in multipartFormData() {
                 formData.append(bodyPart.bodyStream, withLength: bodyPart.bodyContentLength, headers: Alamofire.HTTPHeaders(bodyPart.headers))
             }
-        }, with: urlRequest)
+        }, with: urlRequest, interceptor: CustomRequestInterceptor.shared)
         .addValidations(validations)
             .response { (response) in
                 switch response.result {
