@@ -3,26 +3,14 @@ import Foundation
 import Alamofire
 import LSAPI
 
-
-public struct CustomRequestInterceptor: Alamofire.RequestInterceptor {
-    static let shared = CustomRequestInterceptor()
-    
-//    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-//        print("CustomRequestInterceptor\\\\---")
-//    }
-}
-
-//public protocol InterceptorType {
-//    var interceptor: RequestInterceptor? { get }
-//}
-
-
 public class AlamofireExecutor: ExecutorType {
     public static let instance = AlamofireExecutor()
-
+    
     private var validations: [Alamofire.DataRequest.Validation] = []
-
-    private init() {}
+    private let interceptor: Alamofire.RequestInterceptor?
+    public init(interceptor: Alamofire.RequestInterceptor? = nil) {
+        self.interceptor = interceptor
+    }
 
     public func execute(urlRequest: URLRequest, multipartFormData: LSAPI.MultipartFormData?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
         if let multipartFormData = multipartFormData {
@@ -49,7 +37,7 @@ extension DataRequest {
 
 extension AlamofireExecutor {
     fileprivate func doExecute(urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-        let dataRequest = AF.request(urlRequest, interceptor: CustomRequestInterceptor.shared)
+        let dataRequest = AF.request(urlRequest, interceptor: interceptor)
             .addValidations(self.validations)
             .response { completionHandler($0.data, $0.response, $0.error) }
 
@@ -63,7 +51,7 @@ extension AlamofireExecutor {
             for bodyPart in multipartFormData() {
                 formData.append(bodyPart.bodyStream, withLength: bodyPart.bodyContentLength, headers: Alamofire.HTTPHeaders(bodyPart.headers))
             }
-        }, with: urlRequest, interceptor: CustomRequestInterceptor.shared)
+        }, with: urlRequest, interceptor: interceptor)
         .addValidations(validations)
             .response { (response) in
                 switch response.result {

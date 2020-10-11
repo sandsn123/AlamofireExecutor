@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		328CDCA8252B1BFF00847FF5 /* AlamofireExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 328CDCA6252B1BFF00847FF5 /* AlamofireExecutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		328CDCB4252B3ABB00847FF5 /* ServiceType+AlamofireExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CDCB2252B3ABB00847FF5 /* ServiceType+AlamofireExecutor.swift */; };
 		328CDCB5252B3ABB00847FF5 /* AlamofireExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CDCB3252B3ABB00847FF5 /* AlamofireExecutor.swift */; };
 		328CDCB9252B3B2D00847FF5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328CDCB8252B3B2D00847FF5 /* Alamofire.framework */; };
 		328CDCBA252B3B2D00847FF5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 328CDCB8252B3B2D00847FF5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -35,7 +34,6 @@
 		328CDCA3252B1BFF00847FF5 /* AlamofireExecutor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireExecutor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		328CDCA6252B1BFF00847FF5 /* AlamofireExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlamofireExecutor.h; sourceTree = "<group>"; };
 		328CDCA7252B1BFF00847FF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		328CDCB2252B3ABB00847FF5 /* ServiceType+AlamofireExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceType+AlamofireExecutor.swift"; sourceTree = "<group>"; };
 		328CDCB3252B3ABB00847FF5 /* AlamofireExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireExecutor.swift; sourceTree = "<group>"; };
 		328CDCB8252B3B2D00847FF5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		328CDCBC252B3B4500847FF5 /* LSAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LSAPI.framework; path = Carthage/Build/iOS/LSAPI.framework; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				328CDCB3252B3ABB00847FF5 /* AlamofireExecutor.swift */,
-				328CDCB2252B3ABB00847FF5 /* ServiceType+AlamofireExecutor.swift */,
 				328CDCA6252B1BFF00847FF5 /* AlamofireExecutor.h */,
 				328CDCA7252B1BFF00847FF5 /* Info.plist */,
 			);
@@ -171,7 +168,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				328CDCB4252B3ABB00847FF5 /* ServiceType+AlamofireExecutor.swift in Sources */,
 				328CDCB5252B3ABB00847FF5 /* AlamofireExecutor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
