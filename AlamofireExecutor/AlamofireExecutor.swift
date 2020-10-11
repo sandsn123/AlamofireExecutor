@@ -5,7 +5,15 @@ import LSAPI
 
 public struct CustomRequestInterceptor: RequestInterceptor {
     static let shared = CustomRequestInterceptor()
+    
+    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        print("CustomRequestInterceptor\\\\")
+    }
 }
+
+//public protocol InterceptorType {
+//    var interceptor: RequestInterceptor? { get }
+//}
 
 
 public class AlamofireExecutor: ExecutorType {
