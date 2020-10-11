@@ -5,14 +5,6 @@ import LSAPI
 
 public struct CustomRequestInterceptor: RequestInterceptor {
     static let shared = CustomRequestInterceptor()
-    
-    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        print("CustomRequestInterceptor--adapt")
-    }
-    
-    public func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-        print("CustomRequestInterceptor--retry")
-    }
 }
 
 
