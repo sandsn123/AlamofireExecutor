@@ -3,11 +3,20 @@ import Foundation
 import Alamofire
 import LSAPI
 
-public struct CustomRequestInterceptor: RequestInterceptor {
+public protocol RequestInterceptorBridge {
+    func adaptBridge()
+}
+
+extension RequestInterceptorBridge {
+    public func adaptBridge() {}
+}
+
+public struct CustomRequestInterceptor: RequestInterceptor, RequestInterceptorBridge {
     static let shared = CustomRequestInterceptor()
     
     public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        print("CustomRequestInterceptor\\\\")
+        print("CustomRequestInterceptor\\\\---")
+        self.adaptBridge()
     }
 }
 
