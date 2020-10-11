@@ -3,21 +3,13 @@ import Foundation
 import Alamofire
 import LSAPI
 
-public protocol RequestInterceptorBridge {
-    func adaptBridge()
-}
 
-extension RequestInterceptorBridge {
-    public func adaptBridge() {}
-}
-
-public struct CustomRequestInterceptor: RequestInterceptor, RequestInterceptorBridge {
+public struct CustomRequestInterceptor: Alamofire.RequestInterceptor {
     static let shared = CustomRequestInterceptor()
     
-    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        print("CustomRequestInterceptor\\\\---")
-        self.adaptBridge()
-    }
+//    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+//        print("CustomRequestInterceptor\\\\---")
+//    }
 }
 
 //public protocol InterceptorType {
@@ -57,7 +49,6 @@ extension DataRequest {
 
 extension AlamofireExecutor {
     fileprivate func doExecute(urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-//        let session = Session(interceptor: CustomRequestInterceptor.shared)
         let dataRequest = AF.request(urlRequest, interceptor: CustomRequestInterceptor.shared)
             .addValidations(self.validations)
             .response { completionHandler($0.data, $0.response, $0.error) }
@@ -68,7 +59,6 @@ extension AlamofireExecutor {
     }
 
     fileprivate func doExecute(urlRequest: URLRequest, multipartFormData: @escaping LSAPI.MultipartFormData, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-//        let session = Session(interceptor: CustomRequestInterceptor.shared)
         let dataRequest = AF.upload(multipartFormData: { (formData) in
             for bodyPart in multipartFormData() {
                 formData.append(bodyPart.bodyStream, withLength: bodyPart.bodyContentLength, headers: Alamofire.HTTPHeaders(bodyPart.headers))
