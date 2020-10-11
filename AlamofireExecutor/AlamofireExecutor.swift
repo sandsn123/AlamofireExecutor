@@ -41,20 +41,17 @@ extension DataRequest {
 
 extension AlamofireExecutor {
     fileprivate func doExecute(urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-        
-        let session = Session(interceptor: CustomRequestInterceptor.shared)
-        let dataRequest = session.request(urlRequest)
+        let dataRequest = AF.request(urlRequest, interceptor: CustomRequestInterceptor.shared)
             .addValidations(self.validations)
             .response { completionHandler($0.data, $0.response, $0.error) }
+
         return AnonymousCancelable {
             dataRequest.cancel()
         }
     }
 
     fileprivate func doExecute(urlRequest: URLRequest, multipartFormData: @escaping LSAPI.MultipartFormData, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-
-        let session = Session(interceptor: CustomRequestInterceptor.shared)
-        let dataRequest = session.upload(multipartFormData: { (formData) in
+        let dataRequest = AF.upload(multipartFormData: { (formData) in
             for bodyPart in multipartFormData() {
                 formData.append(bodyPart.bodyStream, withLength: bodyPart.bodyContentLength, headers: Alamofire.HTTPHeaders(bodyPart.headers))
             }
