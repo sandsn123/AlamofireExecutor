@@ -3,11 +3,18 @@ import Foundation
 import Alamofire
 import LSAPI
 
-public class CustomRequestInterceptor: RequestInterceptor {}
-
-private extension CustomRequestInterceptor {
+public struct CustomRequestInterceptor: RequestInterceptor {
     static let shared = CustomRequestInterceptor()
+    
+    public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        print("CustomRequestInterceptor--adapt")
+    }
+    
+    public func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        print("CustomRequestInterceptor--retry")
+    }
 }
+
 
 public class AlamofireExecutor: ExecutorType {
     public static let instance = AlamofireExecutor()
@@ -41,8 +48,8 @@ extension DataRequest {
 
 extension AlamofireExecutor {
     fileprivate func doExecute(urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-        let session = Session(interceptor: CustomRequestInterceptor.shared)
-        let dataRequest = session.request(urlRequest, interceptor: CustomRequestInterceptor.shared)
+//        let session = Session(interceptor: CustomRequestInterceptor.shared)
+        let dataRequest = AF.request(urlRequest, interceptor: CustomRequestInterceptor.shared)
             .addValidations(self.validations)
             .response { completionHandler($0.data, $0.response, $0.error) }
 
@@ -52,8 +59,8 @@ extension AlamofireExecutor {
     }
 
     fileprivate func doExecute(urlRequest: URLRequest, multipartFormData: @escaping LSAPI.MultipartFormData, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-        let session = Session(interceptor: CustomRequestInterceptor.shared)
-        let dataRequest = session.upload(multipartFormData: { (formData) in
+//        let session = Session(interceptor: CustomRequestInterceptor.shared)
+        let dataRequest = AF.upload(multipartFormData: { (formData) in
             for bodyPart in multipartFormData() {
                 formData.append(bodyPart.bodyStream, withLength: bodyPart.bodyContentLength, headers: Alamofire.HTTPHeaders(bodyPart.headers))
             }
