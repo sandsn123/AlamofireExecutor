@@ -39,6 +39,7 @@ extension AlamofireExecutor {
     fileprivate func doExecute(urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
         let dataRequest = AF.request(urlRequest, interceptor: interceptor)
             .addValidations(self.validations)
+            .validate(statusCode: 200..<300)
             .response { completionHandler($0.data, $0.response, $0.error) }
 
         return AnonymousCancelable {
