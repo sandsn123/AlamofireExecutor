@@ -10,25 +10,8 @@
 		328CDCA8252B1BFF00847FF5 /* AlamofireExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 328CDCA6252B1BFF00847FF5 /* AlamofireExecutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		328CDCB5252B3ABB00847FF5 /* AlamofireExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CDCB3252B3ABB00847FF5 /* AlamofireExecutor.swift */; };
 		328CDCB9252B3B2D00847FF5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328CDCB8252B3B2D00847FF5 /* Alamofire.framework */; };
-		328CDCBA252B3B2D00847FF5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 328CDCB8252B3B2D00847FF5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		328CDCBD252B3B4500847FF5 /* LSAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328CDCBC252B3B4500847FF5 /* LSAPI.framework */; };
-		328CDCBE252B3B4500847FF5 /* LSAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 328CDCBC252B3B4500847FF5 /* LSAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		328CDCBB252B3B2D00847FF5 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				328CDCBE252B3B4500847FF5 /* LSAPI.framework in Embed Frameworks */,
-				328CDCBA252B3B2D00847FF5 /* Alamofire.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		328CDCA3252B1BFF00847FF5 /* AlamofireExecutor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireExecutor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +93,6 @@
 				328CDC9F252B1BFF00847FF5 /* Sources */,
 				328CDCA0252B1BFF00847FF5 /* Frameworks */,
 				328CDCA1252B1BFF00847FF5 /* Resources */,
-				328CDCBB252B3B2D00847FF5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
