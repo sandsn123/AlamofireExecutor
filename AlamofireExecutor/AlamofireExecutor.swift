@@ -42,8 +42,8 @@ extension AlamofireExecutor {
             .validate(statusCode: 200..<300)
             .response { completionHandler($0.data, $0.response, $0.error) }
 
-        return AnonymousCancelable {
-            dataRequest.cancel()
+        return AnonymousCancelable { [weak dataRequest] in
+            dataRequest?.tasks.forEach { $0.cancel() }
         }
     }
 
@@ -54,6 +54,7 @@ extension AlamofireExecutor {
             }
         }, with: urlRequest, interceptor: interceptor)
         .addValidations(validations)
+        .validate(statusCode: 200..<300)
             .response { (response) in
                 switch response.result {
                 case .failure(let error):
@@ -63,8 +64,8 @@ extension AlamofireExecutor {
                 }
         }
 
-        return AnonymousCancelable {
-            dataRequest.cancel()
+        return AnonymousCancelable { [weak dataRequest] in
+            dataRequest?.tasks.forEach { $0.cancel() }
         }
     }
 }
