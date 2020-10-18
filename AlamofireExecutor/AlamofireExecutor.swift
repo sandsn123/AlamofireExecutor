@@ -42,8 +42,8 @@ extension AlamofireExecutor {
             .validate(statusCode: 200..<300)
             .response { completionHandler($0.data, $0.response, $0.error) }
 
-        return AnonymousCancelable { [weak dataRequest] in
-            dataRequest?.tasks.forEach { $0.cancel() }
+        return AnonymousCancelable {
+            print("dsd")
         }
     }
 
@@ -64,8 +64,9 @@ extension AlamofireExecutor {
                 }
         }
 
-        return AnonymousCancelable { [weak dataRequest] in
-            dataRequest?.tasks.forEach { $0.cancel() }
+        return AnonymousCancelable {
+            print("dsd")
+//            dataRequest?.tasks.forEach { $0.cancel() }
         }
     }
 }
