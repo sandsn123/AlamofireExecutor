@@ -42,7 +42,7 @@ extension AlamofireExecutor {
 //            .validate(statusCode: 200..<300)
 //            .response { completionHandler($0.data, $0.response, $0.error) }
 
-        return AnonymousCancelable{}
+        return AnonymousCancelable(action: nil)
     }
 
     fileprivate func doExecute(urlRequest: URLRequest, multipartFormData: @escaping LSAPI.MultipartFormData, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
