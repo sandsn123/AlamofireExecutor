@@ -37,14 +37,12 @@ extension DataRequest {
 
 extension AlamofireExecutor {
     fileprivate func doExecute(urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
-        let dataRequest = AF.request(urlRequest, interceptor: interceptor)
-            .addValidations(self.validations)
-            .validate(statusCode: 200..<300)
-            .response { completionHandler($0.data, $0.response, $0.error) }
+//        let dataRequest = AF.request(urlRequest, interceptor: interceptor)
+//            .addValidations(self.validations)
+//            .validate(statusCode: 200..<300)
+//            .response { completionHandler($0.data, $0.response, $0.error) }
 
-        return AnonymousCancelable {
-            print("dsd")
-        }
+        return AnonymousCancelable{}
     }
 
     fileprivate func doExecute(urlRequest: URLRequest, multipartFormData: @escaping LSAPI.MultipartFormData, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
