@@ -8,8 +8,10 @@ public class AlamofireExecutor: ExecutorType {
     
     private var validations: [Alamofire.DataRequest.Validation] = []
     private let interceptor: Alamofire.RequestInterceptor?
-    public init(interceptor: Alamofire.RequestInterceptor? = nil) {
+    private let statusCodes: Range<Int>?
+    public init(interceptor: Alamofire.RequestInterceptor? = nil, statusCodes: Range<Int>? = nil) {
         self.interceptor = interceptor
+        self.statusCodes = statusCodes
     }
 
     public func execute(urlRequest: URLRequest, multipartFormData: LSAPI.MultipartFormData?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
@@ -33,11 +35,19 @@ extension DataRequest {
             return dataRequest.validate(validation)
         }
     }
+    
+    fileprivate func validation(statusCodeRange: Range<Int>?) -> Self {
+        guard let codes = statusCodeRange else {
+            return self
+        }
+        return validate(statusCode: codes)
+    }
 }
 
 extension AlamofireExecutor {
     fileprivate func doExecute(urlRequest: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> Cancelable {
         let dataRequest = AF.request(urlRequest, interceptor: interceptor)
+            .validation(statusCodeRange: statusCodes)
             .addValidations(self.validations)
             .response { completionHandler($0.data, $0.response, $0.error) }
 
@@ -52,6 +62,7 @@ extension AlamofireExecutor {
                 formData.append(bodyPart.bodyStream, withLength: bodyPart.bodyContentLength, headers: Alamofire.HTTPHeaders(bodyPart.headers))
             }
         }, with: urlRequest, interceptor: interceptor)
+        .validation(statusCodeRange: statusCodes)
         .addValidations(validations)
             .response { (response) in
                 switch response.result {
