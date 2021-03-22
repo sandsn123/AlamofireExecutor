@@ -8,8 +8,8 @@ public class AlamofireExecutor: ExecutorType {
     
     private var validations: [Alamofire.DataRequest.Validation] = []
     private let interceptor: Alamofire.RequestInterceptor?
-    private let statusCodes: Range<Int>?
-    public init(interceptor: Alamofire.RequestInterceptor? = nil, statusCodes: Range<Int>? = nil) {
+    private let statusCodes: Array<Int>?
+    public init(interceptor: Alamofire.RequestInterceptor? = nil, statusCodes: Array<Int>? = nil) {
         self.interceptor = interceptor
         self.statusCodes = statusCodes
     }
@@ -36,7 +36,7 @@ extension DataRequest {
         }
     }
     
-    fileprivate func validation(statusCodeRange: Range<Int>?) -> Self {
+    fileprivate func validation(statusCodeRange: Array<Int>?) -> Self {
         guard let codes = statusCodeRange else {
             return self
         }
