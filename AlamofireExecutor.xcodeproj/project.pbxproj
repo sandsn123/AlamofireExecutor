@@ -3,17 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3248184C29AB6321004D76A7 /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3248184B29AB6321004D76A7 /* Alamofire.xcframework */; };
+		3248185029AB632B004D76A7 /* LSAPI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3248184F29AB632B004D76A7 /* LSAPI.xcframework */; };
 		328CDCA8252B1BFF00847FF5 /* AlamofireExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 328CDCA6252B1BFF00847FF5 /* AlamofireExecutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		328CDCB5252B3ABB00847FF5 /* AlamofireExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CDCB3252B3ABB00847FF5 /* AlamofireExecutor.swift */; };
-		328CDCB9252B3B2D00847FF5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328CDCB8252B3B2D00847FF5 /* Alamofire.framework */; };
-		328CDCBD252B3B4500847FF5 /* LSAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328CDCBC252B3B4500847FF5 /* LSAPI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3248184B29AB6321004D76A7 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
+		3248184F29AB632B004D76A7 /* LSAPI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = LSAPI.xcframework; path = Carthage/Build/LSAPI.xcframework; sourceTree = "<group>"; };
 		328CDCA3252B1BFF00847FF5 /* AlamofireExecutor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireExecutor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		328CDCA6252B1BFF00847FF5 /* AlamofireExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlamofireExecutor.h; sourceTree = "<group>"; };
 		328CDCA7252B1BFF00847FF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -27,8 +29,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				328CDCBD252B3B4500847FF5 /* LSAPI.framework in Frameworks */,
-				328CDCB9252B3B2D00847FF5 /* Alamofire.framework in Frameworks */,
+				3248184C29AB6321004D76A7 /* Alamofire.xcframework in Frameworks */,
+				3248185029AB632B004D76A7 /* LSAPI.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +67,8 @@
 		328CDCB7252B3B2D00847FF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3248184F29AB632B004D76A7 /* LSAPI.xcframework */,
+				3248184B29AB6321004D76A7 /* Alamofire.xcframework */,
 				328CDCBC252B3B4500847FF5 /* LSAPI.framework */,
 				328CDCB8252B3B2D00847FF5 /* Alamofire.framework */,
 			);
@@ -294,7 +298,7 @@
 				);
 				INFOPLIST_FILE = AlamofireExecutor/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,7 +328,7 @@
 				);
 				INFOPLIST_FILE = AlamofireExecutor/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
